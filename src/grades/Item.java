@@ -20,21 +20,7 @@ public class Item {
        public int compare(Item o1, Item o2) {
            String name1 = o1.name.toLowerCase();
            String name2 = o2.name.toLowerCase();
-//
-//           String cat1 = o1.category;
-//           String cat2 = o2.category;
-//
-//           return name1.compareTo(name2);
-//           int value1 = name1.compareTo(name2);
-//
-//           if(value1 == 0){
-//               int value2 = o1.category.compareTo(o2.category);
-//               if(value2 != 0){
-//                   return value2;
-//               }
-//           }
-//
-//           return value1;
+
            int value1 = o1.category.compareTo(o2.category);
 
            if(value1 != 0){
