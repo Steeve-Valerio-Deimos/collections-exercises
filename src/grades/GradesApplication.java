@@ -49,7 +49,11 @@ public class GradesApplication {
             response.trim();
 
             if(students.containsKey(response)){
-                System.out.printf("%nName: %s - Github Username: %s%nCurrent Average: %.2f%n%n", students.get(response).getName(), response, students.get(response).getGradeAverage());
+
+                System.out.printf("%nName: %s - Github Username: %s%n", students.get(response).getName(), response);
+                System.out.println("Grades :" + students.get(response).getGrades());
+                System.out.printf("Current Average: %.2f%n%n ", students.get(response).getGradeAverage());
+
             }else{
                 System.out.printf("%nSorry, no student found with the Github username of \"%s\".%n%n", response);
             }
