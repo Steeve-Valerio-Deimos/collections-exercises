@@ -1,6 +1,6 @@
 package grades;
 
-import java.sql.SQLOutput;
+
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -49,6 +49,7 @@ public class GradesApplication {
             System.out.println("1. Individual Grades");
             System.out.println("2. Get All Grades");
             System.out.println("3. View Overall Class Average");
+            System.out.println("4. Print CSV Report For All Students");
             int choice = sc.nextInt();
 
             switch(choice) {
@@ -98,36 +99,19 @@ public class GradesApplication {
                     total /= students.size();
                     System.out.printf("Total Grades Average %.2f%n", total);
                     break;
+                case 4:
+                    System.out.printf("%25s%25s%25s%n", "GitHub Username:", "Average Grades:", "Name:");
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    for (HashMap.Entry<String, Student> entry : students.entrySet()) {
+                        System.out.printf("%25s%25.2f%25s%n",entry.getKey(), entry.getValue().getGradeAverage(), entry.getValue().getName());
+                    }
+                    break;
 
                     default:
                         another = false;
                 }
 
-//            System.out.println("\nWhat student would you like to see more information on?");
-//            String response = sc.nextLine();
-//            response.trim();
 //
-//            if(students.containsKey(response)){
-//
-//                System.out.printf("%nName: %s - Github Username: %s%n", students.get(response).getName(), response);
-//                System.out.println("Grades :" + students.get(response).getGrades());
-//                System.out.printf("Current Average: %.2f%n%n ", students.get(response).getGradeAverage());
-//
-//            }else{
-//                System.out.printf("%nSorry, no student found with the Github username of \"%s\".%n%n", response);
-//            }
-//
-//            System.out.println("Would you like to see another student? (Y/N)");
-//            response = sc.nextLine();
-//            response = response.trim();
-//
-//            if(response.equalsIgnoreCase("y")){
-//                another = true;
-//            }else{
-//                another = false;
-//                System.out.println("Goodbye, and have a wonderful day!");
-//            }
-
         }while(another);
 
 
