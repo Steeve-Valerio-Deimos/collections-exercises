@@ -1,5 +1,6 @@
 package grades;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -41,33 +42,91 @@ public class GradesApplication {
             System.out.printf(" | %s | ",i);
         }
         System.out.println();
-        boolean another;
+        boolean another = true;
 
         do{
-            System.out.println("\nWhat student would you like to see more information on?");
-            String response = sc.nextLine();
-            response.trim();
+            System.out.println("Would you like to see individual grades, or all student grades?");
+            System.out.println("1. Individual Grades");
+            System.out.println("2. Get All Grades");
+            System.out.println("3. View Overall Class Average");
+            int choice = sc.nextInt();
 
-            if(students.containsKey(response)){
+            switch(choice) {
+                case 1:
+                    boolean anotherStudent;
+                    do {
 
-                System.out.printf("%nName: %s - Github Username: %s%n", students.get(response).getName(), response);
-                System.out.println("Grades :" + students.get(response).getGrades());
-                System.out.printf("Current Average: %.2f%n%n ", students.get(response).getGradeAverage());
+                        sc.nextLine();
+                        System.out.println("\nWhat student would you like to see more information on?");
+                        String response = sc.nextLine();
+                        response.trim();
 
-            }else{
-                System.out.printf("%nSorry, no student found with the Github username of \"%s\".%n%n", response);
-            }
+                        if (students.containsKey(response)) {
 
-            System.out.println("Would you like to see another student? (Y/N)");
-            response = sc.nextLine();
-            response = response.trim();
+                            System.out.printf("%nName: %s - Github Username: %s%n", students.get(response).getName(), response);
+                            System.out.println("Grades :" + students.get(response).getGrades());
+                            System.out.printf("Current Average: %.2f%n%n ", students.get(response).getGradeAverage());
 
-            if(response.equalsIgnoreCase("y")){
-                another = true;
-            }else{
-                another = false;
-                System.out.println("Goodbye, and have a wonderful day!");
-            }
+                        } else {
+                            System.out.printf("%nSorry, no student found with the Github username of \"%s\".%n%n", response);
+                        }
+
+                        System.out.println("Would you like to see another student? (Y/N)");
+                        response = sc.nextLine();
+                        response = response.trim();
+//
+                        if (response.equalsIgnoreCase("y")) {
+                            anotherStudent = true;//
+                        } else {
+                            anotherStudent = false;
+                        }
+//                            a
+                    } while (anotherStudent);
+
+                    break;
+
+                    case 2:
+                        for (HashMap.Entry<String, Student> entry : students.entrySet()) {
+                            System.out.println(entry.getKey() + entry.getValue().getGrades());
+                        }
+                        break;
+                case 3:
+                    double total = 0;
+                    for (HashMap.Entry<String, Student> entry : students.entrySet()) {
+                        total += entry.getValue().getGradeAverage();
+                    }
+                    total /= students.size();
+                    System.out.printf("Total Grades Average %.2f%n", total);
+                    break;
+
+                    default:
+                        another = false;
+                }
+
+//            System.out.println("\nWhat student would you like to see more information on?");
+//            String response = sc.nextLine();
+//            response.trim();
+//
+//            if(students.containsKey(response)){
+//
+//                System.out.printf("%nName: %s - Github Username: %s%n", students.get(response).getName(), response);
+//                System.out.println("Grades :" + students.get(response).getGrades());
+//                System.out.printf("Current Average: %.2f%n%n ", students.get(response).getGradeAverage());
+//
+//            }else{
+//                System.out.printf("%nSorry, no student found with the Github username of \"%s\".%n%n", response);
+//            }
+//
+//            System.out.println("Would you like to see another student? (Y/N)");
+//            response = sc.nextLine();
+//            response = response.trim();
+//
+//            if(response.equalsIgnoreCase("y")){
+//                another = true;
+//            }else{
+//                another = false;
+//                System.out.println("Goodbye, and have a wonderful day!");
+//            }
 
         }while(another);
 
