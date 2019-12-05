@@ -62,6 +62,7 @@ public class GradesApplication {
                 another = true;
             }else{
                 another = false;
+                System.out.println("Goodbye, and have a wonderful day!");
             }
 
         }while(another);
