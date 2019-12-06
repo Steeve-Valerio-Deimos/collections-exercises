@@ -18,8 +18,6 @@ public class Item {
    public static Comparator<Item> compareName = new Comparator<Item>() {
        @Override
        public int compare(Item o1, Item o2) {
-           String name1 = o1.name.toLowerCase();
-           String name2 = o2.name.toLowerCase();
 
            int value1 = o1.category.compareTo(o2.category);
 
